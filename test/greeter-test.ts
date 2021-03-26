@@ -1,10 +1,7 @@
-import chai, { expect } from "chai";
+import { expect } from "chai";
 import { ethers } from "hardhat";
-import { solidity } from "ethereum-waffle";
 import { Contract, ContractFactory } from "ethers";
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-with-address";
-
-chai.use(solidity);
+import {SignerWithAddress} from "hardhat-deploy-ethers/dist/src/signer-with-address";
 
 describe("Tokens", () => {
   let operator: SignerWithAddress;
