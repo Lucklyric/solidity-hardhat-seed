@@ -4,14 +4,20 @@ import "hardhat-deploy-ethers";
 import dotenv from "dotenv";
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;
-if (!mnemonic) {
-  // FOR DEV ONLY, SET IT IN .env files if you want to keep it private
-  // (IT IS IMPORTANT TO HAVE A NON RANDOM MNEMONIC SO THAT SCRIPTS CAN ACT ON THE SAME ACCOUNTS)
-  mnemonic = "test test test test test test test test test test test junk";
+let privateKey = process.env.PRIVATE_KEY;
+let accounts;
+if (privateKey) {
+  accounts = [privateKey];
+} else {
+  if (!mnemonic) {
+    // FOR DEV ONLY, SET IT IN .env files if you want to keep it private
+    // (IT IS IMPORTANT TO HAVE A NON RANDOM MNEMONIC SO THAT SCRIPTS CAN ACT ON THE SAME ACCOUNTS)
+    mnemonic = "test test test test test test test test test test test junk";
+    accounts = {
+      mnemonic,
+    };
+  }
 }
-const accounts = {
-  mnemonic,
-};
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (args, hre) => {
@@ -36,6 +42,10 @@ const config: HardhatUserConfig = {
     hardhat: {},
     localhost: {
       url: "http://localhost:8545",
+      accounts,
+    },
+    rinkeby: {
+      url: `https://rinkeby.infura.io/v3/${process.env.RINKEBY_INFURA}`,
       accounts,
     },
   },

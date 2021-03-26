@@ -107,3 +107,4 @@ dist
 artifacts/
 cache/
 build/
+deployments/
