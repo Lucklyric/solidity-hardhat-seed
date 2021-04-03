@@ -15,7 +15,7 @@
     "@ethersproject/providers": "^5.0.21",
     "@ethersproject/solidity": "^5.0.9",
     "@nomiclabs/hardhat-ethers": "^2.0.1",
-    "@openzeppelin/contracts": "^4.0.0",
+    "@openzeppelin/contracts": "^3.4.0",
     "@openzeppelin/test-helpers": "^0.5.10",
     "@types/chai": "^4.2.15",
     "@types/ethereumjs-util": "^6.1.0",

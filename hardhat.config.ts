@@ -42,14 +42,13 @@ const config: HardhatUserConfig = {
     hardhat: {},
     localhost: {
       url: "http://localhost:8545",
-      accounts,
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.RINKEBY_INFURA}`,
       accounts,
     },
   },
-  solidity: "0.8.0",
+  solidity: "0.7.6",
 };
 
 export default config;
