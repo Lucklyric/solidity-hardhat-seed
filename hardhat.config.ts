@@ -2,6 +2,7 @@ import {HardhatUserConfig, task} from 'hardhat/config';
 import 'hardhat-deploy';
 import 'hardhat-deploy-ethers';
 import 'hardhat-gas-reporter';
+import 'hardhat-docgen';
 import dotenv from 'dotenv';
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;
@@ -55,6 +56,11 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: '0.7.6',
+  docgen: {
+    path: './docs',
+    clear: true,
+    runOnCompile: true,
+  },
 };
 
 export default config;
