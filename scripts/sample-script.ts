@@ -1,17 +1,19 @@
-import { run, ethers } from "hardhat";
+import {run, ethers} from 'hardhat';
 
 async function main() {
-  await run("compile");
+  await run('compile');
 
   const accounts = await ethers.getSigners();
 
-  console.log("Accounts:", accounts.map(a => a.address));
+  console.log(
+    'Accounts:',
+    accounts.map((a) => a.address)
+  );
 
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const Greeter = await ethers.getContractFactory('Greeter');
+  const greeter = await Greeter.deploy('Hello, Hardhat!');
 
-  console.log("Greeter deployed to:", greeter.address);
-
+  console.log('Greeter deployed to:', greeter.address);
 }
 
 main()
