@@ -3,6 +3,8 @@ import 'hardhat-deploy';
 import 'hardhat-deploy-ethers';
 import 'hardhat-gas-reporter';
 import 'hardhat-docgen';
+import '@typechain/hardhat';
+
 import dotenv from 'dotenv';
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;
@@ -54,6 +56,10 @@ const config: HardhatUserConfig = {
       url: `https://rinkeby.infura.io/v3/${process.env.RINKEBY_INFURA}`,
       accounts,
     },
+  },
+  typechain: {
+    outDir: 'typechain',
+    target: 'ethers-v5',
   },
   solidity: '0.7.6',
   docgen: {

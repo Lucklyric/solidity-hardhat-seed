@@ -9,9 +9,9 @@
     "format": "prettier --check \"**/*.{ts,js,sol}\"",
     "format:fix": "prettier --write \"**/*.{ts,js,sol}\"",
     "compile": "hardhat compile",
-    "prepare": "husky install"
+    "prepare": "husky install && hardhat typechain"
   },
-  "author": "",
+  "author": "Alvin(Xinyao) Sun <lucklyric@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@ethersproject/address": "^5.0.10",

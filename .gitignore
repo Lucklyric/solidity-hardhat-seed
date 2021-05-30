@@ -108,3 +108,4 @@ artifacts/
 cache/
 build/
 deployments/
+typechain/
