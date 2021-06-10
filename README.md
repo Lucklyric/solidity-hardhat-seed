@@ -18,7 +18,7 @@ yarn run hardhat docgen
 
 ## Hardhat start local test node
 ```bash
-yarn run hardhat node --network hardhat --no-deploy
+yarn run hardhat node --network hardhat --no-deploy --show-accounts
 # or use arbitrary env file
 yarn run env-cmd -f envs/.env.exampleA npx hardhat node --network hardhat --no-deploy --show-accounts
 ```

@@ -1,11 +1,12 @@
+import dotenv from 'dotenv';
 import {HardhatUserConfig, task} from 'hardhat/config';
 import 'hardhat-deploy';
-import 'hardhat-deploy-ethers';
+import '@nomiclabs/hardhat-ethers';
+import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
 import 'hardhat-docgen';
-import '@typechain/hardhat';
+import '@openzeppelin/hardhat-upgrades';
 
-import dotenv from 'dotenv';
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;
 const privateKey = process.env.PRIVATE_KEY;
@@ -61,7 +62,7 @@ const config: HardhatUserConfig = {
     outDir: 'typechain',
     target: 'ethers-v5',
   },
-  solidity: '0.7.6',
+  solidity: '0.8.0',
   docgen: {
     path: './docs',
     clear: true,

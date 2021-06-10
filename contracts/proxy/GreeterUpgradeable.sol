@@ -3,11 +3,12 @@ pragma solidity ^0.8.0;
 pragma abicoder v2;
 
 import "hardhat/console.sol";
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
-contract Greeter {
+contract GreeterUpgradeable is Initializable {
     string greeting;
 
-    constructor(string memory _greeting) {
+    function initialize(string memory _greeting) public initializer {
         console.log("Deploying a Greeter with greeting:", _greeting);
         greeting = _greeting;
     }
