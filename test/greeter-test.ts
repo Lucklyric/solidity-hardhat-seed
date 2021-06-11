@@ -1,9 +1,9 @@
 import {expect} from 'chai';
 import {ethers} from 'hardhat';
 import {Contract, ContractFactory} from 'ethers';
-import {SignerWithAddress} from 'hardhat-deploy-ethers/dist/src/signer-with-address';
+import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 
-describe('Tokens', () => {
+describe('Greeter', () => {
   let operator: SignerWithAddress;
 
   before('setup accounts', async () => {

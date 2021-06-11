@@ -6,6 +6,14 @@ solidity smart contract project seed
 yarn
 ```
 
+## Format and Lint
+```bash
+yarn run format
+yarn run format:fix
+yarn run lint 
+yarn run lint:fix
+```
+
 ## Compile contracts
 ```bash
 yarn run hardhat compile
@@ -14,6 +22,11 @@ yarn run hardhat compile
 ## Build doc 
 ```bash
 yarn run hardhat docgen 
+```
+
+## Compile typechain 
+```bash
+yarn run hardhat typechain 
 ```
 
 ## Hardhat start local test node
