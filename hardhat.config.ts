@@ -6,6 +6,8 @@ import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
 import 'hardhat-docgen';
 import '@openzeppelin/hardhat-upgrades';
+import 'hardhat-contract-sizer';
+import "solidity-coverage";
 
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;
@@ -62,11 +64,24 @@ const config: HardhatUserConfig = {
     outDir: 'typechain',
     target: 'ethers-v5',
   },
-  solidity: '0.8.0',
+  solidity: {
+    version: '0.8.2',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
+  },
   docgen: {
     path: './docs',
     clear: true,
     runOnCompile: true,
+  },
+  contractSizer: {
+    alphaSort: true,
+    runOnCompile: true,
+    disambiguatePaths: false,
   },
 };
 
