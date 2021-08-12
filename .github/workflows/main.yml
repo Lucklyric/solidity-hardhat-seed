@@ -34,6 +34,12 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install node_modules
         run: yarn
+      - name: Compile
+        run: |
+          yarn hardhat compile
+      - name: Compile and Test
+        run: |
+          yarn hardhat test --network hardhat
 
 
           
