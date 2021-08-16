@@ -7,8 +7,10 @@ import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol"
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
-contract GreeterUpgradeableImpl is AccessControlUpgradeable, UUPSUpgradeable {
+contract GreeterImplV2 is AccessControlUpgradeable, UUPSUpgradeable {
     string greeting;
+    uint256 public count;
+    uint256 public count2;
 
     function initialize(string memory _greeting) public initializer {
         console.log("Deploying a Greeter with greeting:", _greeting);
@@ -18,6 +20,15 @@ contract GreeterUpgradeableImpl is AccessControlUpgradeable, UUPSUpgradeable {
 
     function greet() public view returns (string memory) {
         return greeting;
+    }
+
+    function getCount() public view returns (uint256) {
+        return count + count2;
+    }
+
+    function setCount(uint256 _count) public {
+        count = _count;
+        count2 = count * 2;
     }
 
     function setGreeting(string memory _greeting) public {
