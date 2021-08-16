@@ -1,7 +1,7 @@
+import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 import {expect} from 'chai';
 import {ethers} from 'hardhat';
-import {Contract, ContractFactory} from 'ethers';
-import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
+import {Greeter, Greeter__factory} from '../typechain';
 
 describe('Greeter', () => {
   let operator: SignerWithAddress;
@@ -10,15 +10,15 @@ describe('Greeter', () => {
     [operator] = await ethers.getSigners();
   });
 
-  let Greeter: ContractFactory;
-  let greeter: Contract;
+  let Greeter: Greeter__factory;
+  let greeter: Greeter;
 
   before('fetch contract factories', async () => {
     Greeter = await ethers.getContractFactory('Greeter');
   });
 
   describe('Greeter', () => {
-    it("Should return the new greeting once it's changed", async function () {
+    it("Should return the new greeting once it's changed", async () => {
       greeter = await Greeter.connect(operator).deploy('Hello, world!');
 
       await greeter.deployed();

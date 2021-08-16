@@ -1,21 +1,17 @@
-import chai, {expect} from 'chai';
-import {ethers} from 'hardhat';
-import {BigNumber, ContractFactory} from 'ethers';
 import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
+import chai, {expect} from 'chai';
+import {solidity} from 'ethereum-waffle';
+import {BigNumber} from 'ethers';
+import {ethers} from 'hardhat';
 import {
-  SimpleToken,
   SimpleTokenAccessControl,
   SimpleTokenAccessControl__factory,
-  SimpleToken__factory,
   TimelockController,
   TimelockController__factory,
 } from '../../typechain';
-import {solidity} from 'ethereum-waffle';
-import {formatBytes32String} from 'ethers/lib/utils';
 chai.use(solidity);
 
-describe('TimeLock with ERC20 access control contract', function () {
-  const initialSupply = 1000000;
+describe('TimeLock with ERC20 access control contract', () => {
   const tokenName = 'MySimpleToken';
   const tokenSymbol = 'MST';
 
@@ -30,7 +26,7 @@ describe('TimeLock with ERC20 access control contract', function () {
 
   // `beforeEach` will run before each test, re-deploying the contract every
   // time. It receives a callback, which can be async.
-  beforeEach(async function () {
+  beforeEach(async () => {
     // Get the ContractFactory and Signers here.
     SimpleToken = await ethers.getContractFactory('SimpleTokenAccessControl');
     Timelock = await ethers.getContractFactory('TimelockController');
@@ -49,8 +45,8 @@ describe('TimeLock with ERC20 access control contract', function () {
     simpleToken.grantRole(ethers.utils.id('MINTER_ROLE'), timelock.address);
   });
 
-  describe('Transactions', function () {
-    it('Grant timelock mint permission', async function () {
+  describe('Transactions', () => {
+    it('Propose an transaction and execute it', async () => {
       const data = SimpleToken.interface.encodeFunctionData('mint', [
         addr1.address,
         BigNumber.from(100),
@@ -66,6 +62,8 @@ describe('TimeLock with ERC20 access control contract', function () {
           ethers.utils.id('salt'),
           3600 * 20
         );
+
+      // forward time
       await ethers.provider.send('evm_increaseTime', [3600 * 100]);
       await ethers.provider.send('evm_mine', []);
       await ethers.provider.getBlock('latest');

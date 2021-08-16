@@ -1,7 +1,7 @@
+import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 import {expect} from 'chai';
 import {ethers} from 'hardhat';
-import {Contract, ContractFactory} from 'ethers';
-import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
+import {SimpleToken, SimpleToken__factory} from '../../typechain';
 
 // `describe` is a Mocha function that allows you to organize your tests. It's
 // not actually needed, but having your tests organized makes debugging them
@@ -24,8 +24,8 @@ describe('Token contract', function () {
   const tokenName = 'MySimpleToken';
   const tokenSymbol = 'MST';
 
-  let SimpleToken: ContractFactory;
-  let simpleToken: Contract;
+  let SimpleToken: SimpleToken__factory;
+  let simpleToken: SimpleToken;
   let owner: SignerWithAddress;
   let addr1: SignerWithAddress;
   let addr2: SignerWithAddress;
@@ -33,7 +33,7 @@ describe('Token contract', function () {
 
   // `beforeEach` will run before each test, re-deploying the contract every
   // time. It receives a callback, which can be async.
-  beforeEach(async function () {
+  beforeEach(async () => {
     // Get the ContractFactory and Signers here.
     SimpleToken = await ethers.getContractFactory('SimpleToken');
     [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
@@ -49,30 +49,30 @@ describe('Token contract', function () {
   });
 
   // You can nest describe calls to create subsections.
-  describe('Deployment', function () {
+  describe('Deployment', () => {
     // `it` is another Mocha function. This is the one you use to define your
     // tests. It receives the test name, and a callback function.
 
     // If the callback function is async, Mocha will `await` it.
-    it('Should set the right name', async function () {
+    it('Should set the right name', async () => {
       // Expect receives a value, and wraps it in an Assertion object. These
       // objects have a lot of utility methods to assert values.
       expect(await simpleToken.name()).to.equal(tokenName);
     });
 
     // If the callback function is async, Mocha will `await` it.
-    it('Should set the right symbol', async function () {
+    it('Should set the right symbol', async () => {
       expect(await simpleToken.symbol()).to.equal(tokenSymbol);
     });
 
-    it('Should assign the total supply of tokens to the owner', async function () {
+    it('Should assign the total supply of tokens to the owner', async () => {
       const ownerBalance = await simpleToken.balanceOf(owner.address);
       expect(await simpleToken.totalSupply()).to.equal(ownerBalance);
     });
   });
 
-  describe('Transactions', function () {
-    it('Should transfer tokens between accounts', async function () {
+  describe('Transactions', () => {
+    it('Should transfer tokens between accounts', async () => {
       // Transfer 50 tokens from owner to addr1
       await simpleToken.transfer(addr1.address, 50);
       const addr1Balance = await simpleToken.balanceOf(addr1.address);
@@ -85,7 +85,7 @@ describe('Token contract', function () {
       expect(addr2Balance).to.equal(50);
     });
 
-    it('Should fail if sender doesn’t have enough tokens', async function () {
+    it('Should fail if sender doesn’t have enough tokens', async () => {
       const initialOwnerBalance = await simpleToken.balanceOf(owner.address);
 
       // Try to send 1 token from addr1 (0 tokens) to owner (1000000 tokens).
@@ -100,7 +100,7 @@ describe('Token contract', function () {
       );
     });
 
-    it('Should update balances after transfers', async function () {
+    it('Should update balances after transfers', async () => {
       const initialOwnerBalance = await simpleToken.balanceOf(owner.address);
 
       // Transfer 100 tokens from owner to addr1.
@@ -111,7 +111,7 @@ describe('Token contract', function () {
 
       // Check balances.
       const finalOwnerBalance = await simpleToken.balanceOf(owner.address);
-      expect(finalOwnerBalance).to.equal(initialOwnerBalance - 150);
+      expect(finalOwnerBalance).to.equal(initialOwnerBalance.sub(150));
 
       const addr1Balance = await simpleToken.balanceOf(addr1.address);
       expect(addr1Balance).to.equal(100);
