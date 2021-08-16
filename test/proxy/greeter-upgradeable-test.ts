@@ -2,7 +2,6 @@ import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 import chai, {expect} from 'chai';
 import {solidity} from 'ethereum-waffle';
 import {ethers, upgrades} from 'hardhat';
-import {GreeterUpgradeable, GreeterUpgradeableImplv2} from '../../typechain';
 import {GreeterUpgradeableImplV2__factory} from '../../typechain/factories/GreeterUpgradeableImplV2__factory';
 import {GreeterUpgradeableImpl__factory} from '../../typechain/factories/GreeterUpgradeableImpl__factory';
 import {GreeterUpgradeableImpl} from '../../typechain/GreeterUpgradeableImpl';
@@ -42,7 +41,7 @@ describe('GreeterUpgradeable', () => {
       greeterV2 = (await upgrades.upgradeProxy(
         greeter.address,
         GreeterV2
-      )) as unknown as GreeterUpgradeableImplv2;
+      )) as unknown as GreeterUpgradeableImplV2;
     });
 
     it('V2 keeps V1 states', async () => {
