@@ -7,7 +7,7 @@ import 'hardhat-gas-reporter';
 import 'hardhat-docgen';
 import '@openzeppelin/hardhat-upgrades';
 import 'hardhat-contract-sizer';
-import "solidity-coverage";
+import 'solidity-coverage';
 
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;

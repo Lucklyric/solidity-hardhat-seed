@@ -3,7 +3,6 @@ import {ethers} from 'hardhat';
 import {Contract, ContractFactory} from 'ethers';
 import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 
-
 // `describe` is a Mocha function that allows you to organize your tests. It's
 // not actually needed, but having your tests organized makes debugging them
 // easier. All Mocha functions are available in the global scope.
@@ -11,7 +10,7 @@ import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
 // `describe` receives the name of a section of your test suite, and a callback.
 // The callback must define the tests of that section. This callback can't be
 // an async function.
-describe("Token contract", function () {
+describe('Token contract', function () {
   // Mocha has four functions that let you hook into the the test runner's
   // lifecyle. These are: `before`, `beforeEach`, `after`, `afterEach`.
 
@@ -22,8 +21,8 @@ describe("Token contract", function () {
   // `before` and `beforeEach` callbacks.
 
   const initialSupply = 1000000;
-  const tokenName = "MySimpleToken";
-  const tokenSymbol = "MST";
+  const tokenName = 'MySimpleToken';
+  const tokenSymbol = 'MST';
 
   let SimpleToken: ContractFactory;
   let simpleToken: Contract;
@@ -36,40 +35,44 @@ describe("Token contract", function () {
   // time. It receives a callback, which can be async.
   beforeEach(async function () {
     // Get the ContractFactory and Signers here.
-    SimpleToken = await ethers.getContractFactory("SimpleToken");
+    SimpleToken = await ethers.getContractFactory('SimpleToken');
     [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
 
     // To deploy our contract, we just have to call Token.deploy() and await
     // for it to be deployed(), which happens onces its transaction has been
     // mined.
-    simpleToken = await SimpleToken.deploy(initialSupply, tokenName, tokenSymbol);
+    simpleToken = await SimpleToken.deploy(
+      initialSupply,
+      tokenName,
+      tokenSymbol
+    );
   });
 
   // You can nest describe calls to create subsections.
-  describe("Deployment", function () {
+  describe('Deployment', function () {
     // `it` is another Mocha function. This is the one you use to define your
     // tests. It receives the test name, and a callback function.
 
     // If the callback function is async, Mocha will `await` it.
-    it("Should set the right name", async function () {
+    it('Should set the right name', async function () {
       // Expect receives a value, and wraps it in an Assertion object. These
       // objects have a lot of utility methods to assert values.
       expect(await simpleToken.name()).to.equal(tokenName);
     });
 
     // If the callback function is async, Mocha will `await` it.
-    it("Should set the right symbol", async function () {
+    it('Should set the right symbol', async function () {
       expect(await simpleToken.symbol()).to.equal(tokenSymbol);
     });
 
-    it("Should assign the total supply of tokens to the owner", async function () {
+    it('Should assign the total supply of tokens to the owner', async function () {
       const ownerBalance = await simpleToken.balanceOf(owner.address);
       expect(await simpleToken.totalSupply()).to.equal(ownerBalance);
     });
   });
 
-  describe("Transactions", function () {
-    it("Should transfer tokens between accounts", async function () {
+  describe('Transactions', function () {
+    it('Should transfer tokens between accounts', async function () {
       // Transfer 50 tokens from owner to addr1
       await simpleToken.transfer(addr1.address, 50);
       const addr1Balance = await simpleToken.balanceOf(addr1.address);
@@ -82,14 +85,14 @@ describe("Token contract", function () {
       expect(addr2Balance).to.equal(50);
     });
 
-    it("Should fail if sender doesn’t have enough tokens", async function () {
+    it('Should fail if sender doesn’t have enough tokens', async function () {
       const initialOwnerBalance = await simpleToken.balanceOf(owner.address);
 
       // Try to send 1 token from addr1 (0 tokens) to owner (1000000 tokens).
       // `require` will evaluate false and revert the transaction.
       await expect(
         simpleToken.connect(addr1).transfer(owner.address, 1)
-      ).to.be.revertedWith("transfer amount exceeds balance");
+      ).to.be.revertedWith('transfer amount exceeds balance');
 
       // Owner balance shouldn't have changed.
       expect(await simpleToken.balanceOf(owner.address)).to.equal(
@@ -97,7 +100,7 @@ describe("Token contract", function () {
       );
     });
 
-    it("Should update balances after transfers", async function () {
+    it('Should update balances after transfers', async function () {
       const initialOwnerBalance = await simpleToken.balanceOf(owner.address);
 
       // Transfer 100 tokens from owner to addr1.
