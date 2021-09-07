@@ -36,7 +36,7 @@ jobs:
         run: yarn
       - name: Compile
         run: |
-          yarn hardhat compile
+          yarn build
       - name: Compile and Test
         run: |
-          yarn hardhat test --network hardhat
+          yarn test:cov

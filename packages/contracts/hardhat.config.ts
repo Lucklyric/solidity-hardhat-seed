@@ -41,6 +41,9 @@ task('accounts', 'Prints the list of accounts', async (args, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 const config: HardhatUserConfig = {
+  paths: {
+    sources: 'src',
+  },
   defaultNetwork: 'localhost',
   namedAccounts: {
     deployer: 0,

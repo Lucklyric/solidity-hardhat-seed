@@ -1,59 +1,20 @@
-# solidity-hardhat-truffle-seed
-solidity smart contract project seed
+# Solidity Hardhat Seed
 
-## Install dependencies
+## Structure
 ```bash
-yarn
+.
+├── LICENSE
+├── Makefile
+├── package.json
+├── packages
+│   ├── contracts   # Hardhat projects
+│   └── sdk         # TS client
+├── README.md
+└── yarn.lock
 ```
 
-## Format and Lint
-```bash
-yarn run format
-yarn run format:fix
-yarn run lint 
-yarn run lint:fix
+## Workflow
 ```
-
-## Compile contracts
-```bash
-yarn run hardhat compile
+make install
+make build
 ```
-
-## Build doc 
-```bash
-yarn run hardhat docgen 
-```
-
-## Compile typechain 
-```bash
-yarn run hardhat typechain 
-```
-
-## Hardhat start local test node
-```bash
-yarn run hardhat node --network hardhat --no-deploy --show-accounts
-# or use arbitrary env file
-yarn run env-cmd -f envs/.env.exampleA npx hardhat node --network hardhat --no-deploy --show-accounts
-```
-
-## Hardhat run tests on local node
-```bash
-yarn run hardhat test --network localhost
-# or use arbitrary env file e.g.
-yarn run env-cmd -f envs/.env.exampleA npx hardhat test --network localhost
-```
-
-## Hardhat run scripts on local node
-```bash
-yarn run hardhat run scripts/sample-script.ts --network localhost
-# or use arbitrary env file e.g.
-yarn run env-cmd -f envs/.env.exampleA npx hardhat run scripts/sample-script.ts --network localhost
-```
-
-## Hardhat run deploy
-```bash
-yarn run hardhat deploy --network localhost
-# or use arbitrary env file e.g.
-yarn run env-cmd -f envs/.env.exampleA npx hardhat deploy --network localhost --reset
-```
-
