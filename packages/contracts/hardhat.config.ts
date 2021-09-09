@@ -8,6 +8,7 @@ import 'hardhat-docgen';
 import '@openzeppelin/hardhat-upgrades';
 import 'hardhat-contract-sizer';
 import 'solidity-coverage';
+import '@nomiclabs/hardhat-waffle';
 
 dotenv.config();
 let mnemonic = process.env.MNEMONIC;

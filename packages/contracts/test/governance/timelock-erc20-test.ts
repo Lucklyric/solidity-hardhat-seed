@@ -1,6 +1,5 @@
 import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
-import chai, {expect} from 'chai';
-import {solidity} from 'ethereum-waffle';
+import {expect} from 'chai';
 import {BigNumber} from 'ethers';
 import {ethers} from 'hardhat';
 import {
@@ -9,7 +8,6 @@ import {
   TimelockController,
   TimelockController__factory,
 } from '../../typechain';
-chai.use(solidity);
 
 describe('TimeLock with ERC20 access control contract', () => {
   const tokenName = 'MySimpleToken';

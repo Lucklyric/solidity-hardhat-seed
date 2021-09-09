@@ -1,13 +1,11 @@
 import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
-import chai, {expect} from 'chai';
-import {solidity} from 'ethereum-waffle';
+import {expect} from 'chai';
 import {ethers, upgrades} from 'hardhat';
 import {GreeterImplV2__factory} from '../../typechain/factories/GreeterImplV2__factory';
 import {GreeterImpl__factory} from '../../typechain/factories/GreeterImpl__factory';
 import {GreeterImpl} from '../../typechain/GreeterImpl';
 import {GreeterImplV2} from '../../typechain/GreeterImplV2';
 
-chai.use(solidity);
 describe('GreeterUpgradeable', () => {
   let operator: SignerWithAddress;
 

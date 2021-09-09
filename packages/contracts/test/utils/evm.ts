@@ -1,5 +1,4 @@
 import {JsonRpcProvider} from '@ethersproject/providers';
-import {ethers} from 'ethers';
 
 export const forwardTimestamp = async (
   provider: JsonRpcProvider,

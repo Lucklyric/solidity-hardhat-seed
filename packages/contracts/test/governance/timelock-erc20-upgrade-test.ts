@@ -1,6 +1,5 @@
 import {SignerWithAddress} from '@nomiclabs/hardhat-ethers/dist/src/signers';
-import chai, {expect} from 'chai';
-import {solidity} from 'ethereum-waffle';
+import {expect} from 'chai';
 import {Contract} from 'ethers';
 import {ethers, upgrades} from 'hardhat';
 import pino from 'pino';
@@ -13,7 +12,6 @@ import {
 import {SimpleTokenAccessControlImplV2__factory} from '../../typechain/factories/SimpleTokenAccessControlImplV2__factory';
 import {SimpleTokenAccessControlImplV2} from '../../typechain/SimpleTokenAccessControlImplV2';
 import {forwardTimestamp} from '../utils/evm';
-chai.use(solidity);
 
 const Logger = pino();
 
