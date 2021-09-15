@@ -7,8 +7,7 @@ module.exports = {
       options: {
         printWidth: 120,
         tabWidth: 4,
-        singleQuote: false,
-        explicitTypes: 'always'
+        singleQuote: false
       }
     }
   ]
