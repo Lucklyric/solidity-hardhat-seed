@@ -35,6 +35,9 @@ contract SimpleTokenAccessControlImplV2 is
 
     string public constant implementationVersion = "2.0.0";
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() initializer {}
+
     function newFunction() public pure returns (string memory) {
         return implementationVersion;
     }

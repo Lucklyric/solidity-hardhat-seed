@@ -35,6 +35,9 @@ contract SimpleTokenAccessControlImpl is
 
     string public constant implementationVersion = "1.0.0";
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() initializer {}
+
     /**
      * @dev Grants `DEFAULT_ADMIN_ROLE`, `MINTER_ROLE` and `PAUSER_ROLE` to the
      * account that deploys the contract.
