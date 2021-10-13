@@ -1,12 +1,14 @@
 {
   "name": "hardhat-seed-sdk",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/sdk/src/index.js",
+  "types": "dist/sdk/src/index.d.ts",
   "author": "Alvin(Xinyao) Sun <lucklyric@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build:clean && yarn tsc",
-    "build:clean": "rm -rf dist && rm -f tsconfig.tsbuildinfo",
+    "prebuild": "cp ../contracts/deployment-artifacts/deployment.json ./src/config/",
+    "build": "yarn build:clean && yarn prebuild && yarn tsc",
+    "build:clean": "rm -rf dist && yarn cpy ../contracts/typechain ./dist/contracts/typechain",
     "lint": "eslint \"**/*.{js,ts}\"",
     "lint:fix": "eslint --fix \"**/*.{js,ts}\"",
     "format": "prettier --check \"**/*.{ts,js}\"",
