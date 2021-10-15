@@ -10,6 +10,7 @@ import '@openzeppelin/hardhat-upgrades';
 import 'hardhat-contract-sizer';
 import 'solidity-coverage';
 import '@nomiclabs/hardhat-waffle';
+import '@nomiclabs/hardhat-etherscan';
 import fs from 'fs';
 
 if (fs.existsSync('./typechain')) {
@@ -118,6 +119,11 @@ const config: HardhatUserConfig = {
   typechain: {
     outDir: 'typechain',
     target: 'ethers-v5',
+  },
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: process.env.APIKEY,
   },
   solidity: {
     version: '0.8.2',
