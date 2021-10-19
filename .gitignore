@@ -113,3 +113,4 @@ typechain/
 .openzeppelin/unknown-31337.json
 coverage.json
 packages/contracts/.openzeppelin/unknown-31337.json
+.history/
