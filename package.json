@@ -11,6 +11,7 @@
     "packages/sdk"
   ],
   "scripts": {
+    "prepare": "husky install",
     "build": "yarn workspaces run build",
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
